@@ -1,8 +1,8 @@
 <div align="center">
 
-# goose
+# goosecog
 
-_a local, extensible, open source AI agent that automates engineering tasks_
+_a cognitive interface fabric for OpenCog distributed cognition, self-healing, and autonomous evolution_
 
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"
@@ -14,15 +14,57 @@ _a local, extensible, open source AI agent that automates engineering tasks_
 </p>
 </div>
 
+goose extends the powerful goose AI agent framework with a cognitive interface fabric inspired by OpenCog, enabling distributed cognition, self-healing mechanisms, and autonomous evolution capabilities.
+
+## Core Features
+
+🧠 **Distributed Cognition** - Coordinate knowledge sharing across multiple agents  
+🔧 **Self-Healing** - Automatic detection and recovery from degraded states  
+🔍 **Autognosis** - Self-introspection and cognitive state analysis  
+🌱 **Autogenesis** - Self-evolution through adaptive proposals  
+⚙️ **Autobuild** - Automatic configuration generation
+
+## Quick Start
+
+```rust
+use goose::cognitive_fabric::*;
+
+// Initialize cognitive coordinator
+let coordinator = CognitiveCoordinator::new();
+
+// Create and register an agent
+let mut agent = CognitiveState::default();
+agent.capabilities.push("processing".to_string());
+coordinator.register_agent(agent).await?;
+
+// Share knowledge across agents
+coordinator.share_knowledge(
+    agent_id,
+    "key".to_string(),
+    "value".to_string()
+).await?;
+```
+
+## Documentation
+
+- [Cognitive Fabric Guide](./COGNITIVE_FABRIC.md) - Complete cognitive fabric documentation
+- [Examples](./crates/goose/examples/cognitive_fabric_demo.rs) - Working examples
+- [Tests](./crates/goose/tests/cognitive_fabric_test.rs) - Test suite
+
+Run the demo:
+```bash
+cargo run --example cognitive_fabric_demo -p goose
+```
+
+---
+
+## Built on goose
+
+goose builds upon the foundation of **goose**, the local, extensible, open source AI agent that automates engineering tasks.
+
 goose is your on-machine AI agent, capable of automating complex development tasks from start to finish. More than just code suggestions, goose can build entire projects from scratch, write and execute code, debug failures, orchestrate workflows, and interact with external APIs - _autonomously_.
 
-Whether you're prototyping an idea, refining existing code, or managing intricate engineering pipelines, goose adapts to your workflow and executes tasks with precision.
-
-Designed for maximum flexibility, goose works with any LLM and supports multi-model configuration to optimize performance and cost, seamlessly integrates with MCP servers, and is available as both a desktop app as well as CLI - making it the ultimate AI assistant for developers who want to move faster and focus on innovation.
-
-[![Watch the video](https://github.com/user-attachments/assets/ddc71240-3928-41b5-8210-626dfb28af7a)](https://youtu.be/D-DpDunrbpo)
-
-# Quick Links
+### goose Quick Links
 - [Quickstart](https://block.github.io/goose/docs/quickstart)
 - [Installation](https://block.github.io/goose/docs/getting-started/installation)
 - [Tutorials](https://block.github.io/goose/docs/category/tutorials)
