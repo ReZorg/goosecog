@@ -6,16 +6,16 @@
 //! - Autognosis (self-introspection) and Autogenesis (self-evolution)
 //! - Autobuild configuration framework
 
-pub mod types;
+pub mod autobuild;
+pub mod autogenesis;
+pub mod autognosis;
 pub mod coordinator;
 pub mod self_healing;
-pub mod autognosis;
-pub mod autogenesis;
-pub mod autobuild;
+pub mod types;
 
-pub use types::{CognitiveState, CognitiveEvent, DistributedKnowledge};
+pub use autobuild::AutobuildFramework;
+pub use autogenesis::AutogenesisEngine;
+pub use autognosis::AutognosisEngine;
 pub use coordinator::CognitiveCoordinator;
 pub use self_healing::SelfHealingManager;
-pub use autognosis::AutognosisEngine;
-pub use autogenesis::AutogenesisEngine;
-pub use autobuild::AutobuildFramework;
+pub use types::{CognitiveEvent, CognitiveState, DistributedKnowledge};

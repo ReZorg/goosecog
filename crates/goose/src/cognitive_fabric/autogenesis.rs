@@ -40,7 +40,10 @@ impl AutogenesisEngine {
         state: &CognitiveState,
         report: &IntrospectionReport,
     ) -> Result<Vec<EvolutionProposal>> {
-        info!("Generating evolution proposals for agent {}", state.agent_id);
+        info!(
+            "Generating evolution proposals for agent {}",
+            state.agent_id
+        );
 
         let mut proposals = Vec::new();
 
@@ -95,7 +98,11 @@ impl AutogenesisEngine {
         Ok(proposals)
     }
 
-    pub async fn apply_evolution(&self, state: &mut CognitiveState, proposal: &EvolutionProposal) -> Result<()> {
+    pub async fn apply_evolution(
+        &self,
+        state: &mut CognitiveState,
+        proposal: &EvolutionProposal,
+    ) -> Result<()> {
         info!("Applying evolution proposal: {}", proposal.description);
 
         match &proposal.proposal_type {
@@ -106,16 +113,14 @@ impl AutogenesisEngine {
                 state.knowledge_base.insert(key.clone(), value.clone());
             }
             EvolutionType::BehaviorModification { behavior } => {
-                state.knowledge_base.insert(
-                    format!("behavior:{}", behavior),
-                    "modified".to_string(),
-                );
+                state
+                    .knowledge_base
+                    .insert(format!("behavior:{}", behavior), "modified".to_string());
             }
             EvolutionType::KnowledgeAcquisition { topic } => {
-                state.knowledge_base.insert(
-                    format!("knowledge:{}", topic),
-                    "acquired".to_string(),
-                );
+                state
+                    .knowledge_base
+                    .insert(format!("knowledge:{}", topic), "acquired".to_string());
             }
         }
 

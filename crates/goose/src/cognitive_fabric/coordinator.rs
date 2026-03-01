@@ -18,7 +18,7 @@ pub struct CognitiveCoordinator {
 impl CognitiveCoordinator {
     pub fn new() -> Self {
         let (event_tx, event_rx) = mpsc::channel(100);
-        
+
         Self {
             knowledge: DistributedKnowledge::new(),
             agents: Arc::new(RwLock::new(Vec::new())),
@@ -29,25 +29,25 @@ impl CognitiveCoordinator {
 
     pub async fn register_agent(&self, state: CognitiveState) -> Result<()> {
         info!("Registering agent: {}", state.agent_id);
-        
+
         let mut agents = self.agents.write().await;
         agents.push(state.clone());
-        
+
         self.event_tx
             .send(CognitiveEvent::StateUpdate {
                 agent_id: state.agent_id,
                 state,
             })
             .await?;
-        
+
         Ok(())
     }
 
     pub async fn share_knowledge(&self, source: Uuid, key: String, value: String) -> Result<()> {
         debug!("Sharing knowledge from {}: {} = {}", source, key, value);
-        
+
         self.knowledge.insert(key.clone(), value, source).await;
-        
+
         let agents = self.agents.read().await;
         for agent in agents.iter() {
             if agent.agent_id != source {
@@ -60,7 +60,7 @@ impl CognitiveCoordinator {
                     .await?;
             }
         }
-        
+
         Ok(())
     }
 
@@ -70,15 +70,15 @@ impl CognitiveCoordinator {
 
     pub async fn update_agent_state(&self, agent_id: Uuid, state: CognitiveState) -> Result<()> {
         let mut agents = self.agents.write().await;
-        
+
         if let Some(agent) = agents.iter_mut().find(|a| a.agent_id == agent_id) {
             *agent = state.clone();
-            
+
             self.event_tx
                 .send(CognitiveEvent::StateUpdate { agent_id, state })
                 .await?;
         }
-        
+
         Ok(())
     }
 

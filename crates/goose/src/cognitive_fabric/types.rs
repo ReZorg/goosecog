@@ -35,12 +35,32 @@ impl Default for CognitiveState {
 /// Events in the cognitive system
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub enum CognitiveEvent {
-    StateUpdate { agent_id: Uuid, state: CognitiveState },
-    KnowledgeShare { source: Uuid, target: Uuid, knowledge: String },
-    HealthAlert { agent_id: Uuid, severity: AlertSeverity, message: String },
-    RecoveryInitiated { agent_id: Uuid, action: String },
-    EvolutionProposal { agent_id: Uuid, proposal: String },
-    ConfigUpdate { agent_id: Uuid, config_change: String },
+    StateUpdate {
+        agent_id: Uuid,
+        state: CognitiveState,
+    },
+    KnowledgeShare {
+        source: Uuid,
+        target: Uuid,
+        knowledge: String,
+    },
+    HealthAlert {
+        agent_id: Uuid,
+        severity: AlertSeverity,
+        message: String,
+    },
+    RecoveryInitiated {
+        agent_id: Uuid,
+        action: String,
+    },
+    EvolutionProposal {
+        agent_id: Uuid,
+        proposal: String,
+    },
+    ConfigUpdate {
+        agent_id: Uuid,
+        config_change: String,
+    },
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -87,7 +107,7 @@ impl DistributedKnowledge {
             timestamp: chrono::Utc::now(),
             confidence: 1.0,
         };
-        
+
         let mut store = self.store.write().await;
         store.insert(key, entry);
     }

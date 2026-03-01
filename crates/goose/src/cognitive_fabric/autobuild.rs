@@ -55,7 +55,10 @@ impl AutobuildFramework {
             settings.insert("max_concurrent_tasks".to_string(), ConfigValue::Number(3.0));
         } else {
             settings.insert("recovery_mode".to_string(), ConfigValue::Boolean(false));
-            settings.insert("max_concurrent_tasks".to_string(), ConfigValue::Number(10.0));
+            settings.insert(
+                "max_concurrent_tasks".to_string(),
+                ConfigValue::Number(10.0),
+            );
         }
 
         let error_count = report.metrics.get("error_count").unwrap_or(&0.0);
@@ -64,10 +67,7 @@ impl AutobuildFramework {
             settings.insert("error_threshold".to_string(), ConfigValue::Number(3.0));
         }
 
-        settings.insert(
-            "monitoring_interval".to_string(),
-            ConfigValue::Number(60.0),
-        );
+        settings.insert("monitoring_interval".to_string(), ConfigValue::Number(60.0));
         settings.insert(
             "knowledge_sync_enabled".to_string(),
             ConfigValue::Boolean(true),
@@ -102,8 +102,15 @@ impl AutobuildFramework {
         self.configs.get(agent_id)
     }
 
-    pub async fn apply_config(&self, state: &mut CognitiveState, config: &AutoConfig) -> Result<()> {
-        info!("Applying auto-configuration v{} to agent {}", config.version, state.agent_id);
+    pub async fn apply_config(
+        &self,
+        state: &mut CognitiveState,
+        config: &AutoConfig,
+    ) -> Result<()> {
+        info!(
+            "Applying auto-configuration v{} to agent {}",
+            config.version, state.agent_id
+        );
 
         for (key, value) in &config.settings {
             let value_str = match value {
@@ -111,7 +118,9 @@ impl AutobuildFramework {
                 ConfigValue::Number(n) => n.to_string(),
                 ConfigValue::Boolean(b) => b.to_string(),
             };
-            state.knowledge_base.insert(format!("config:{}", key), value_str);
+            state
+                .knowledge_base
+                .insert(format!("config:{}", key), value_str);
         }
 
         Ok(())

@@ -29,8 +29,14 @@ impl AutognosisEngine {
         metrics.insert("health_score".to_string(), state.health_score);
         metrics.insert("task_count".to_string(), state.active_tasks.len() as f64);
         metrics.insert("error_count".to_string(), state.error_history.len() as f64);
-        metrics.insert("knowledge_entries".to_string(), state.knowledge_base.len() as f64);
-        metrics.insert("capability_count".to_string(), state.capabilities.len() as f64);
+        metrics.insert(
+            "knowledge_entries".to_string(),
+            state.knowledge_base.len() as f64,
+        );
+        metrics.insert(
+            "capability_count".to_string(),
+            state.capabilities.len() as f64,
+        );
 
         let insights = self.generate_insights(state, &metrics);
         let recommendations = self.generate_recommendations(state, &metrics);
@@ -44,7 +50,11 @@ impl AutognosisEngine {
         })
     }
 
-    fn generate_insights(&self, state: &CognitiveState, _metrics: &HashMap<String, f64>) -> Vec<String> {
+    fn generate_insights(
+        &self,
+        state: &CognitiveState,
+        _metrics: &HashMap<String, f64>,
+    ) -> Vec<String> {
         let mut insights = Vec::new();
 
         if state.health_score < 0.5 {
@@ -66,7 +76,11 @@ impl AutognosisEngine {
         insights
     }
 
-    fn generate_recommendations(&self, state: &CognitiveState, _metrics: &HashMap<String, f64>) -> Vec<String> {
+    fn generate_recommendations(
+        &self,
+        state: &CognitiveState,
+        _metrics: &HashMap<String, f64>,
+    ) -> Vec<String> {
         let mut recommendations = Vec::new();
 
         if state.health_score < 0.7 {
@@ -74,11 +88,13 @@ impl AutognosisEngine {
         }
 
         if state.error_history.len() > 2 {
-            recommendations.push("Review error patterns and implement preventive measures".to_string());
+            recommendations
+                .push("Review error patterns and implement preventive measures".to_string());
         }
 
         if state.capabilities.is_empty() {
-            recommendations.push("Register available capabilities for better task distribution".to_string());
+            recommendations
+                .push("Register available capabilities for better task distribution".to_string());
         }
 
         recommendations
