@@ -2,7 +2,7 @@
 
 # goosecog
 
-_a cognitive interface fabric for opencog distributed cognition, self-healing, and autonomous evolution_
+_a cognitive interface fabric for OpenCog distributed cognition, self-healing, and autonomous evolution_
 
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"
@@ -14,7 +14,7 @@ _a cognitive interface fabric for opencog distributed cognition, self-healing, a
 </p>
 </div>
 
-**goosecog** extends the powerful goose AI agent framework with a cognitive interface fabric inspired by OpenCog, enabling distributed cognition, self-healing mechanisms, and autonomous evolution capabilities.
+goose extends the powerful goose AI agent framework with a cognitive interface fabric inspired by OpenCog, enabling distributed cognition, self-healing mechanisms, and autonomous evolution capabilities.
 
 ## Core Features
 
@@ -60,7 +60,7 @@ cargo run --example cognitive_fabric_demo -p goose
 
 ## Built on goose
 
-goosecog builds upon the foundation of **goose**, the local, extensible, open source AI agent that automates engineering tasks.
+goose builds upon the foundation of **goose**, the local, extensible, open source AI agent that automates engineering tasks.
 
 goose is your on-machine AI agent, capable of automating complex development tasks from start to finish. More than just code suggestions, goose can build entire projects from scratch, write and execute code, debug failures, orchestrate workflows, and interact with external APIs - _autonomously_.
 

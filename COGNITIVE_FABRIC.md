@@ -1,6 +1,6 @@
 # Cognitive Interface Fabric
 
-The Cognitive Interface Fabric is an OpenCog-inspired framework for distributed cognition, self-healing, and autonomous evolution in goosecog.
+The Cognitive Interface Fabric is an OpenCog-inspired framework for distributed cognition, self-healing, and autonomous evolution in goose.
 
 ## Overview
 

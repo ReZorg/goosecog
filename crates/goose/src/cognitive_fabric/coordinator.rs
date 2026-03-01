@@ -12,6 +12,8 @@ pub struct CognitiveCoordinator {
     knowledge: DistributedKnowledge,
     agents: Arc<RwLock<Vec<CognitiveState>>>,
     event_tx: mpsc::Sender<CognitiveEvent>,
+    // Event receiver is kept alive to prevent channel closure
+    // Future: implement event monitoring/logging
     _event_rx: Arc<RwLock<mpsc::Receiver<CognitiveEvent>>>,
 }
 
